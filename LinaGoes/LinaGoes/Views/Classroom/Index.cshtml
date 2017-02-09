@@ -1,0 +1,31 @@
+﻿@using LinaModels
+@model System.Collections.Generic.List<LinaModels.Classroom>
+@{
+    ViewBag.Title = "Sınıf Tanımları";
+}
+
+<h2>Sınıflar</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Tanım</th>
+            <th>Okul</th>
+            <th>#</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Classroom item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Definition</td>
+                <td>@item.School.Name</td>
+                <td><a href="/Classroom/Edit/@item.Id">Güncelle</a> || <a href="/Classroom/Teacher/@item.Id">Sorumlular</a></td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

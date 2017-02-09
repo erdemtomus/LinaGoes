@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinaGoes", "LinaGoes\LinaGoes.csproj", "{E533B90B-ACC3-488A-B534-EB4ABA4C83F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinaModels", "LinaModels\LinaModels.csproj", "{2356B8B5-C39C-47F3-AA40-A7FC1E05D77C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinaHelpers", "LinaHelpers\LinaHelpers.csproj", "{F9A85149-C410-4849-BBFC-4D612F3A7869}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E533B90B-ACC3-488A-B534-EB4ABA4C83F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E533B90B-ACC3-488A-B534-EB4ABA4C83F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E533B90B-ACC3-488A-B534-EB4ABA4C83F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E533B90B-ACC3-488A-B534-EB4ABA4C83F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2356B8B5-C39C-47F3-AA40-A7FC1E05D77C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2356B8B5-C39C-47F3-AA40-A7FC1E05D77C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2356B8B5-C39C-47F3-AA40-A7FC1E05D77C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2356B8B5-C39C-47F3-AA40-A7FC1E05D77C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9A85149-C410-4849-BBFC-4D612F3A7869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A85149-C410-4849-BBFC-4D612F3A7869}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9A85149-C410-4849-BBFC-4D612F3A7869}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A85149-C410-4849-BBFC-4D612F3A7869}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

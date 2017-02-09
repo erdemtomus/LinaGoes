@@ -1,0 +1,50 @@
+﻿@model LinaModels.School
+
+@{
+    ViewBag.Title = "School Form";
+}
+
+<h2>Okul Form</h2>
+
+
+@using (Html.BeginForm("Save", "School", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary(true, "Lütfen Hataları Düzeltiniz")
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Phone)
+        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address)
+        @Html.TextAreaFor(m => m.Address, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.LogoUrl)
+        @Html.TextBoxFor(m => m.LogoUrl, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.LogoUrl, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Website)
+        @Html.TextBoxFor(m => m.Website, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Website, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.Active) Aktif Mi?
+        </label>
+    </div>
+    <div class="form-group">
+        @Html.HiddenFor(m => m.Id)
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </div>
+}

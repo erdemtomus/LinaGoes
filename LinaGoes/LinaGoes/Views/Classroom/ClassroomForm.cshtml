@@ -1,0 +1,42 @@
+﻿@using LinaModels
+@model LinaModels.Classroom
+
+
+@{
+    ViewBag.Title = "Classroom Form";
+    List<School> schoolList = (List<School>)TempData["schoolList"];
+}
+
+<h2>Okul Form</h2>
+
+
+@using (Html.BeginForm("Save", "Classroom", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary(true, "Lütfen Hataları Düzeltiniz")
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Definition)
+        @Html.TextAreaFor(m => m.Definition, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Definition, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.School)
+        @Html.DropDownListFor(m => m.SchoolId, new SelectList(schoolList, "Id", "Name"), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Definition, "", new { @class = "text-danger" })
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.Active) Aktif Mi?
+        </label>
+    </div>
+    <div class="form-group">
+        @Html.HiddenFor(m => m.Id)
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </div>
+}

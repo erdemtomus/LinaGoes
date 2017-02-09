@@ -1,0 +1,72 @@
+﻿@using LinaGoes.ViewModels
+@using LinaModels
+@model ClassroomTeacherViewModel
+@{
+}
+
+
+@try
+{
+    <h3>Sınıf :@Model.CurrentClassInfo.Name</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>UserId</th>
+                <th>ClassroomId</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.CList != null)
+            {
+                foreach (ClassroomTeacher item in Model.CList)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>
+
+                            @{
+                                var firstOrDefault = Model.UsersInTeacherRole.FirstOrDefault(t => t.Id == item.UserId);
+                            }
+                            @if (firstOrDefault != null)
+                            {
+                                @firstOrDefault.Email
+                            }
+                        </td>
+                        <td>@item.Classroom.Name</td>
+                    </tr>
+                                    }
+                                }
+        </tbody>
+    </table>
+
+
+    <br />
+
+}
+catch (Exception e)
+{
+    <h2>@e.Message.ToString()</h2>
+    Console.WriteLine(e);
+}
+
+
+
+@using (Html.BeginForm("Teacher", "Classroom", FormMethod.Post, new {@class = "form-horizontal"}))
+{
+    @Html.ValidationSummary(true, "Lütfen Hataları Düzeltiniz")
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ClassRoomTeacher.UserId)
+        @Html.DropDownListFor(m => m.ClassRoomTeacher.UserId, new SelectList(Model.UsersInTeacherRole, "Id", "Email"), "", new {@class = "form-control"})
+        @Html.ValidationMessageFor(m => m.ClassRoomTeacher.UserId, "", new {@class = "text-danger"})
+    </div>
+
+    <div class="form-group">
+        @Html.HiddenFor(m => m.ClassRoomTeacher.Id)
+        @Html.HiddenFor(m => m.ClassRoomTeacher.ClassroomId)
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </div>
+}

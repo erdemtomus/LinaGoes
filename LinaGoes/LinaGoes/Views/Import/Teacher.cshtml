@@ -1,0 +1,98 @@
+﻿@model List<LinaGoes.Models.ApplicationUser>
+<script src="~/Scripts/handsontable.full.js"></script>
+<link href="~/Content/handsontable.full.css" rel="stylesheet" />
+<link href="~/Content/handsontable.bootstrap.css" rel="stylesheet" />
+
+<h2>Öğretmen Aktar</h2>
+<div class="container">
+    <div class="row">
+        <div class="ol-md-12">
+            <div id="example"></div>
+        </div>
+    </div>
+    <div class="row">
+        <a href="#" onclick="Save()" class="btn btn-success">Kaydet</a>
+    </div>
+</div>
+
+
+
+
+<script>
+
+    var container = document.getElementById('example'), hot, emailValidator;
+    var filter = /^[a-zA-Z0-9_.-]+@@[a-zA-Z0-9]+[a-zA-Z0-9.-]+[a-zA-Z0-9]+.[a-z]{0,4}$/;
+    emailValidator = function (value, callback)
+    {
+        setTimeout(function ()
+        {
+
+            if(filter.test(value)){
+                callback(true);
+            }
+            else {
+                callback(false);
+            }
+        }, 1000);
+    };
+
+
+    hot = new Handsontable(container, {
+        data: [],
+        dataSchema: { id: null, name: { first: null, last: null }, address: null },
+        colHeaders: ['First Name', 'Last Name', 'Mobile Phone','Email'],
+        columns: [
+          {
+                data: 'Name',
+                type: 'text',
+                width: 300
+          },
+          {
+              data: 'Surname',
+              type: 'text',
+              width:300
+          },
+          { data: 'PhoneNumber' },
+          {
+              data: 'Email',
+              type: 'text',
+              validator: emailValidator,
+              allowInvalid: false,
+              width: 300
+
+          }
+        ],
+        autoRowSize: true,
+        minSpareRows: 1,
+        tableClassName: ['table', 'table-hover', 'table-striped'],
+        width: 1200
+
+    });
+
+    hot.loadData(Model);
+
+    function Save() {
+
+        jQuery.ajax({
+            url: '/Import/TeacherSave',
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(hot.getSourceData()),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                //exampleConsole.innerHTML = 'Data saved';
+                //SaveServisKalemler();
+            },
+            error: function (xhr) {
+                //exampleConsole.innerHTML = 'Save error';
+                //alert('error');
+            }
+        });
+
+    }
+
+
+</script>

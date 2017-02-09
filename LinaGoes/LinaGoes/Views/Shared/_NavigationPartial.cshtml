@@ -1,0 +1,52 @@
+﻿@using LinaHelpers.Statics
+<ul class="nav navbar-nav">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("About", "About", "Home")</li>
+    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+
+
+    @if (User.IsInRole(RoleName.Admin))
+    {
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Super Admin<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Okul Yeni", "New", "School")</li>
+                <li>@Html.ActionLink("Okul Listele", "Index", "School")</li>
+                <li role="separator" class="divider"></li>
+                <li>@Html.ActionLink("Okul Yöneticisi Ata", "Assign", "School")</li>
+            </ul>
+        </li>
+
+    }
+
+    @if (User.IsInRole(RoleName.SchoolAdmin) || User.IsInRole(RoleName.Admin))
+    {
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Sınıf Yeni", "New", "Classroom")</li>
+                <li>@Html.ActionLink("Sınıf Listele", "Index", "Classroom")</li>
+                <li role="separator" class="divider"></li>
+                <li>@Html.ActionLink("Öğretmen Aktar","Teacher","Import")</li>
+                @*<li>@Html.ActionLink("Sınıf Öğretmeni Ata", "Assign", "Classroom")</li>*@
+            </ul>
+        </li>
+    }
+    
+    @if (User.IsInRole(RoleName.Teacher) || User.IsInRole(RoleName.SchoolAdmin) || User.IsInRole(RoleName.Admin))
+    {
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Öğrenci<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Öğrenci Yeni", "New", "Classroom")</li>
+                <li>@Html.ActionLink("Öğrenci Listele", "Index", "Classroom")</li>
+                <li role="separator" class="divider"></li>
+            </ul>
+        </li>
+    }
+
+
+
+
+</ul>
